@@ -1,15 +1,27 @@
-[project]
+[tool.poetry]
 name = "potato"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Your Name",email = "you@example.com"}
-]
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
+authors = []
+packages = [
+    { include = "potato" }
 ]
 
+[tool.poetry.dependencies]
+python = ">=3.11"
+fastapi = ">=0.123.1,<0.124.0"
+uvicorn = ">=0.38.0,<0.39.0"
+pydantic = "^2.12.5"
+prometheus-fastapi-instrumentator = "^7.1.0"
+sqlalchemy = "^2.0.44"
+
+[tool.poetry.scripts]
+potato = "potato.runner:main"
+bootstrap = "potato.tools.bootstrap_db:main"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.5.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
