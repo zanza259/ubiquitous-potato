@@ -28,11 +28,13 @@ Considering a "recipe" to be a collection of:
 
 | Column | Type | Description |
 | ------ | ---- | ---------- |
-| recipe_id | GUID | primary key |
+| version_id | GUID | primary key|
+| recipe_id | GUID | consistent identifier across versions |
 | version | Int | integer version number of the recipe |
 | state | Enum | `DRAFT` / `PUBLISHED` / `ARCHIVED` - denotes the overall state of the recipe entry, draft indicating a user is in the process of editing the recipe and published/archived representing a finalized version. use archived to ensure that recipe removal is ultimately non-destructive and can be easily reverted. |
 | latest | Boolean | ease of use flag to streamline retrieval of only the most recent version of a recipe. |
 | cuisine | Enum or Text | `MEXICAN` / `THAI` / etc, categorization of the recipe. can be used in relevant data views for specific sites or kitchens. |
+| name | Text | short name of the recipe |
 | description | Text | generic description of the dish created by the recipe, can be used downstream for menu application integration. |
 | yield | Float | overall yield of the recipe in either portions or a standardized measure like grams. tending on the side of using "portions" as a measure to convey the number of overall customer servings a recipe yields. |
 | ingredients | JSONB | json blob, list of ingredients (see "Schema for Ingredient" below). |
